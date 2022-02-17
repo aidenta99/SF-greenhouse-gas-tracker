@@ -29,6 +29,12 @@ also includes optional functions to check source data size and abort ETL if file
 2. `s3_to_postges_operator`: collects data from a file hosted on AWS S3 and loads it into a Postgres table, 
 currently only supports JSON and CSV source data types.
 
+## Data models
+1. Dimension table: `dim_department` and `dim_energy_consumption`
+2. Fact tables: `fact_emisison` and `fact_energy_consumption`
+
+![models](./img/schema.jpg)
+
 ### Resources:
 - [Data engineering project example 1](https://github.com/josephmachado/beginner_de_project)
 - [Data engineering project example 2](https://github.com/ilya-galperin/SF-EvictionTracker)
