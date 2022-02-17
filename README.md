@@ -32,5 +32,5 @@ currently only supports JSON and CSV source data types.
 ## Dashboards
 
 ### Resources:
-![Data engineering project example 1](https://github.com/josephmachado/beginner_de_project)
-![Data engineering project example 2](https://github.com/ilya-galperin/SF-EvictionTracker)
+[Data engineering project example 1](https://github.com/josephmachado/beginner_de_project)
+[Data engineering project example 2](https://github.com/ilya-galperin/SF-EvictionTracker)
