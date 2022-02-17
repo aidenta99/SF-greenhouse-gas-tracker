@@ -77,8 +77,6 @@ CREATE TABLE mart.dim_department (
     building_address text,
     facility numeric,
     notes numeric,
-    department_name text,
-    department_code text,
     building_category text,
     year_built integer,
     year_renovated integer,
