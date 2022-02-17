@@ -1,2 +1,2 @@
 # SF-greenhouse-gas-tracker
-Tracking departmental greenhouse gas emissions of San Francisco (ELT pipeline, Metabase dashboard) 
+Building data pipeline for tracking departmental greenhouse gas emissions of San Francisco. Keywords: ELT flow, Metabase dashboard 
