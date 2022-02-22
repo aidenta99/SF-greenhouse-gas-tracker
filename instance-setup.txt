@@ -1,0 +1,35 @@
+First, set up S3, EC2, RDS instance on AWS
+
+Run this on your postgres instance
+
+CREATE EXTENSION aws_s3 CASCADE;
+
+Run this on your EC2 instance
+
+pip3 install apache-airflow
+pip3 install apache-airflow-providers-postgres[amazon]
+
+1 .aws iam create-role \
+    --role-name postgrestS3Role \
+    --assume-role-policy-document '{"Version": "2012-10-17", "Statement": [{"Effect": "Allow", "Principal": {"Service": "rds.amazonaws.com"}, "Action": "sts:AssumeRole"}]}'
+
+2. aws iam create-policy \
+    --policy-name postgresS3Policy \
+    --policy-document '{"Version": "2012-10-17", "Statement": [{"Sid": "s3import", "Action": ["s3:GetObject", "s3:ListBucket"], "Effect": "Allow", "Resource": ["arn:aws:s3:::awspostgressdg", "arn:aws:s3:::awspostgressdg/*"]}]}'
+
+3.aws iam attach-role-policy \
+    --policy-arn arn:aws:iam::<AWS ID YOU CAN FIND THIS IN YOUR MANAGMENT CONSOLE>:policy/postgresS3Policy \
+    --role-name postgrestS3Role
+
+4. aws rds add-role-to-db-instance \
+    --db-instance-identifier database-3 \ --Update this to your database name
+    --feature-name s3Import \
+    --role-arn arn:aws:iam::<AWS ID YOU CAN FIND THIS IN YOUR MANAGMENT CONSOLE>:role/postgrestS3Role \
+    --region $REGION.
+
+5. aws ec2 describe-route-tables | jq -r '.RouteTables[] | "\(.VpcId) \(.RouteTableId)"'
+
+6. aws ec2 create-vpc-endpoint \
+    --vpc-id vpc-123456 \
+    --service-name com.amazonaws.$REGION.s3
+    --route-table-ids rtb-12345
